@@ -1,0 +1,3 @@
+/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/build/CMakeFiles/app.dir
+/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/build/CMakeFiles/edit_cache.dir
+/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/build/CMakeFiles/rebuild_cache.dir
