@@ -1,4 +1,4 @@
-Procesamiento de Imagenes
+## Procesamiento de Imagenes
 
 Materia Procesamiento de imagenes en C++
 
