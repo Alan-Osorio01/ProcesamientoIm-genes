@@ -1,0 +1,28 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/src/App.cpp" "CMakeFiles/app.dir/src/App.cpp.o" "gcc" "CMakeFiles/app.dir/src/App.cpp.o.d"
+  "/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/src/converters/ColorConverter.cpp" "CMakeFiles/app.dir/src/converters/ColorConverter.cpp.o" "gcc" "CMakeFiles/app.dir/src/converters/ColorConverter.cpp.o.d"
+  "/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/src/io/CameraStream.cpp" "CMakeFiles/app.dir/src/io/CameraStream.cpp.o" "gcc" "CMakeFiles/app.dir/src/io/CameraStream.cpp.o.d"
+  "/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/src/io/ImageIO.cpp" "CMakeFiles/app.dir/src/io/ImageIO.cpp.o" "gcc" "CMakeFiles/app.dir/src/io/ImageIO.cpp.o.d"
+  "/home/alan_osorio/Documentos/UNIVERSIDAD/SEMESTRE 8/IMAGENES/Cambio_formato/converter/src/main.cpp" "CMakeFiles/app.dir/src/main.cpp.o" "gcc" "CMakeFiles/app.dir/src/main.cpp.o.d"
+  "" "app" "gcc" "CMakeFiles/app.dir/link.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")
