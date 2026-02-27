@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Reporte Taller - Procesamiento Gaussiano</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 12pt;
+      line-height: 1.45;
+      margin: 36px;
+      color: #000;
+    }
+    h1, h2, p, li, b, strong, .meta {
+      color: #000;
+    }
+    h1, h2 {
+      font-size: 12pt;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    h2 {
+      margin-top: 20px;
+    }
+    p {
+      margin: 7px 0;
+    }
+    ul {
+      margin-top: 4px;
+    }
+    .meta {
+      font-size: 12pt;
+    }
+    .autores {
+      text-align: center;
+      font-weight: 700;
+      margin: 2px 0;
+    }
+    b, strong {
+      font-weight: 700;
+    }
+    .box {
+      background: #fff;
+      border: 1px solid #000;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Taller: Procesamiento Gaussiano y Filtrado Espacial en Imagen Satelital</h1>
+  <p class="autores">Alan Steve Osorio Zuluaga</p>
+  <p class="autores">Juan Camilo Gallardo Sanchez</p>
+
+  <h2>1) Representacion digital e histograma</h2>
+  <div class="box">
+    <p><b>Datos medidos:</b> media = 82.68, desviacion estandar = 42.13, min = 7, max = 255.</p>
+    <p>Percentiles: p25 = 62, p50 = 75, p75 = 105, p95 = 160.</p>
+    <p>Pixeles con intensidad &lt; 85: 62.62%. Pixeles &gt; 170: 2.98%.</p>
+  </div>
+  <p><b>Pregunta: La imagen tiene alto contraste?</b><br/>
+  Tiene contraste de moderado a alto. El rango dinamico es amplio (7 a 255) y la desviacion estandar (~42) indica dispersion importante de intensidades.</p>
+
+  <p><b>Pregunta: Esta concentrada en tonos oscuros?</b><br/>
+  Si. La media (82.68) esta por debajo del centro del rango (127.5), y 62.62% de los pixeles estan por debajo de 85.</p>
+
+  <p><b>Pregunta: Que podria representar eso (agua, vegetacion, ciudad)?</b><br/>
+  Predominan superficies oscuras y de brillo medio, compatibles con agua/sombra y vegetacion. Las zonas muy brillantes son pocas (~3%), compatibles con areas urbanas o superficies altamente reflectivas.</p>
+
+  <h2>2) Modelado Gaussiano de pixeles (segmentacion)</h2>
+  <div class="box">
+    <p>Media = 82.6809, desviacion = 42.1349.</p>
+    <p>Rangos usados por el programa:</p>
+    <ul>
+      <li>1 sigma: [40.546, 124.816]</li>
+      <li>2 sigma: [-1.5889, 166.951] (efectivo para 8 bits: [0, 166.951])</li>
+      <li>3 sigma: [-43.7238, 209.085] (efectivo: [0, 209.085])</li>
+    </ul>
+  </div>
+
+  <p><b>Pregunta: Que regiones quedan como fondo?</b><br/>
+  Con 2 sigma, quedan como fondo principalmente regiones de intensidad baja y media (agua/sombra y parte importante de vegetacion). Los objetos muy brillantes tienden a quedar fuera.</p>
+
+  <p><b>Pregunta: Que pasa si usamos 1 sigma?</b><br/>
+  El criterio se vuelve mas estricto: solo se conserva el nucleo mas tipico de intensidades. Se excluyen mas zonas oscuras extremas y mas zonas brillantes.</p>
+
+  <p><b>Pregunta: Y si usamos 3 sigma?</b><br/>
+  Se vuelve muy permisivo: casi toda la imagen entra como fondo, por lo que la segmentacion pierde capacidad de separar clases.</p>
+
+  <h2>3) Filtro gaussiano y reduccion de varianza</h2>
+  <div class="box">
+    <p>Desviacion original = 42.1349</p>
+    <p>Desviacion suavizada = 39.9153</p>
+    <p>Reduccion relativa = 5.27%</p>
+  </div>
+  <p>La varianza disminuyo, lo que confirma suavizado espacial y atenuacion de ruido de alta frecuencia (incluyendo speckle, si la fuente es radar).</p>
+
+  <h2>4) Analisis del kernel gaussiano 5x5</h2>
+  <p><b>Pregunta: La suma de los elementos es aproximadamente 1?</b><br/>
+  Si. Para sigma = 0.5, 1 y 3, la suma reportada fue 1. Esto conserva el brillo promedio de la imagen.</p>
+
+  <p><b>Pregunta: El centro tiene el valor mayor?</b><br/>
+  Si. El valor central fue el mayor en todos los casos (0.6187 para sigma=0.5; 0.1621 para sigma=1; 0.0495 para sigma=3).</p>
+
+  <p><b>Pregunta: Que ocurre si sigma = 0.5?</b><br/>
+  El kernel se concentra fuertemente en el centro (peso central muy alto). Resultado: suavizado debil, mas preservacion de detalles y bordes.</p>
+
+  <p><b>Pregunta: Que ocurre si sigma = 3?</b><br/>
+  El kernel se vuelve mas plano (pesos mas uniformes). Resultado: suavizado fuerte, mayor difuminado de detalles finos y bordes.</p>
+
+  <h2>Conclusion breve</h2>
+  <p>La imagen presenta predominio de tonos oscuros con contraste global apreciable. El modelo gaussiano de intensidades permite definir fondo de forma controlada con sigma, y el kernel gaussiano 2D demuestra como sigma regula el compromiso entre preservacion de detalle y nivel de suavizado.</p>
+</body>
+</html>
